@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "companyName": "Devyut Softech Private Limited",
+    "logoUrl": "https://media.licdn.com/dms/image/D560BAQGSxYfrd2EOTQ/company-logo_200_200/0/1709504306039/devyut_logo?e=2147483647&v=beta&t=-B0RqsQVcxILUWpu26hK-XVKhiwVOVG4PlFJRSYBZkU",
+    "position": "Software Engineer",
+    "location": "Jaipur, Rajasthan",
+    "salary": "₹50,000 - ₹ 80,000",
+    "postedDate": "2024-07-15"
+  },
+  {
+    "id": 2,
+    "companyName": "Resxume",
+    "logoUrl": "data:image/jpeg;base64,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",
+    "position": "React Native Developer",
+    "location": "214 BH-1, PCE Sitapura ",
+    "salary": "₹50,000 - ₹ 80,000",
+    "postedDate": "2024-07-16"
+  },
+  {
+    "id": 3,
+    "companyName": "Tata Consultancy Services",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/1200px-Tata_logo.svg.png",
+    "position": "Software Engineer",
+    "location": "Mumbai, Maharashtra",
+    "salary": "₹60,000 - ₹90,000",
+    "postedDate": "2024-07-17"
+  },
+  {
+    "id": 4,
+    "companyName": "Infosys",
+    "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxZmgFxhT3XstYY3PtVISNS6uO--vWXUuEPQ&s",
+    "position": "Java Developer",
+    "location": "Bangalore, Karnataka",
+    "salary": "₹50,000 - ₹80,000",
+    "postedDate": "2024-07-18"
+  },
+  {
+    "id": 5,
+    "companyName": "Wipro",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg",
+    "position": "Data Scientist",
+    "location": "Pune, Maharashtra",
+    "salary": "₹80,000 - ₹1,20,000",
+    "postedDate": "2024-07-19"
+  },
+  {
+    "id": 6,
+    "companyName": "HCL Technologies",
+    "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw8dRFTstLcDdbZAX_LZVUJ3tCJMrG9RvARQpd3btIwYr93g2rXZ4D1AcQeEyAuFJ9NLA&usqp=CAU",
+    "position": "Cloud Engineer",
+    "location": "Noida, Uttar Pradesh",
+    "salary": "₹60,000 - ₹90,000",
+    "postedDate": "2024-07-20"
+  },
+  {
+    "id": 7,
+    "companyName": "Tech Mahindra",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Tech_Mahindra_logo.svg/1200px-Tech_Mahindra_logo.svg.png",
+    "position": "Cyber Security Engineer",
+    "location": "Hyderabad, Telangana",
+    "salary": "₹70,000 - ₹1,00,000",
+    "postedDate": "2024-07-21"
+  },
+  {
+    "id": 8,
+    "companyName": "Mindtree",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Mindtree_logo.svg/1200px-Mindtree_logo.svg.png",
+    "position": "DevOps Engineer",
+    "location": "Chennai, Tamil Nadu",
+    "salary": "₹50,000 - ₹80,000",
+    "postedDate": "2024-07-22"
+  },
+  {
+    "id": 9,
+    "companyName": "L&T Infotech",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/L%26T_Infotech_logo.svg/1200px-L%26T_Infotech_logo.svg.png",
+    "position": "SAP Consultant",
+    "location": "Mumbai, Maharashtra",
+    "salary": "₹60,000 - ₹90,000",
+    "postedDate": "2024-07-23"
+  },
+  {
+    "id": 10,
+    "companyName": "Capgemini",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Capgemini_logo.svg/1200px-Capgemini_logo.svg.png",
+    "position": "Digital Marketing Specialist",
+    "location": "Bangalore, Karnataka",
+    "salary": "₹40,000 - ₹60,000",
+    "postedDate": "2024-07-24"
+  }
+]

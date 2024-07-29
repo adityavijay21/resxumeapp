@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "banner": "https://cdn.dribbble.com/userupload/5302954/file/original-94cc50976acdd25840fd64c28b2e84ca.jpg?resize=1200x800",
+      "title": "Freshers",
+      "pdfUrl": "https://drive.google.com/uc?export=download&id=1seMVLPbLrcVMIGNPAWKlKxyc0Xfm-AGY",
+      "features": {
+        "Industry Experience": "0-3 years",
+        "Document Type": "Word Format",
+        "Total Downloads": "1000+",
+        "Rating": "3.5 stars"
+      }
+    },
+    {
+      "id": 2,
+      "banner": "https://cdn.dribbble.com/userupload/5042899/file/original-41c000972ced76712cfedb750a6d968e.jpg?resize=1504x1003",
+      "title": "Industry Experience",
+      "pdfUrl": "https://drive.google.com/uc?export=download&id=1seMVLPbLrcVMIGNPAWKlKxyc0Xfm-AGY",
+      "features": {
+        "Industry Experience": "0-3 years",
+        "Document Type": "Word Format",
+        "Total Downloads": "1000+",
+        "Rating": "3.5 stars"
+      }
+    },
+    {
+      "id": 3,
+      "banner": "https://cdn.dribbble.com/userupload/5042771/file/original-8d54723bd07c87540a7da532b1b48f8c.jpg?resize=1504x1003",
+      "title": "Design Freshers",
+      "pdfUrl": "https://drive.google.com/uc?export=download&id=1seMVLPbLrcVMIGNPAWKlKxyc0Xfm-AGY",
+      "features": {
+        "Industry Experience": "0-3 years",
+        "Document Type": "Word Format",
+        "Total Downloads": "1000+",
+        "Rating": "3.5 stars"
+      }
+    },
+    {
+      "id": 4,
+      "banner": "https://cdn.dribbble.com/userupload/5833158/file/original-5bb65ee037363a1cbe56500c0fb055c8.jpg?resize=1200x800",
+      "title": "Design Experience",
+      "pdfUrl": "https://drive.google.com/uc?export=download&id=1seMVLPbLrcVMIGNPAWKlKxyc0Xfm-AGY",
+      "features": {
+        "Industry Experience": "0-3 years",
+        "Document Type": "Word Format",
+        "Total Downloads": "1000+",
+        "Rating": "3.5 stars"
+      }
+    },
+    {
+      "id": 5,
+      "banner": "https://cdn.dribbble.com/userupload/5302145/file/original-6ae7534d236e405bb31cbbf7babf8ae0.jpg?resize=1200x800",
+      "title": "Design Experience",
+      "pdfUrl": "https://drive.google.com/uc?export=download&id=1seMVLPbLrcVMIGNPAWKlKxyc0Xfm-AGY",
+      "features": {
+        "Industry Experience": "0-3 years",
+        "Document Type": "Word Format",
+        "Total Downloads": "1000+",
+        "Rating": "3.5 stars"
+      }
+    }
+  ]
