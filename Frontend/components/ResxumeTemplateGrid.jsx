@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 
-const TEMPLATE_API_URL = 'http://localhost:3000/api/resxumetemplates';
+const TEMPLATE_API_URL = 'https://resxumeapp.onrender.com/api/resxumetemplates';
 
 const ResxumeTemplateGrid = () => {
   const [modalVisible, setModalVisible] = useState(false);

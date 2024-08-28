@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, ActivityIndicator } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
-const API_URL = 'http://localhost:3000/api/sliders';
+const API_URL = 'https://resxumeapp.onrender.com/api/sliders';
 
 const Slider = () => {
   const [greeting, setGreeting] = useState('');

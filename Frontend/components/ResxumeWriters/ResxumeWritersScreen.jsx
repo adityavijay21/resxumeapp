@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, TextInput, Text } from 'react-native';
 import ResxumeWriterCard from './ResxumewriterCard';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://resxumeapp.onrender.com';
 // const API_URL = 'http://10.0.2.2:3000/';
 
 const ResxumeWritersScreen = () => {
