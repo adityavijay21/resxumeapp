@@ -1,27 +1,15 @@
 {
   "expo": {
-    "name": "resxume",
-    "slug": "resxume",
+    "name": "ResxumeNew",
+    "slug": "ResxumeNew",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "plugins": [
-      [
-        "expo-file-system",
-        {
-          "filePermission": "The app needs access to file storage to save and share PDFs."
-        }
-      ]
-    ],
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true
     },
@@ -29,10 +17,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kiriotheo.ResxumeNew"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b092308e-c72b-4285-b90b-bb10eb343f8c"
+      }
     }
   }
 }

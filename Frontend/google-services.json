@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291502064119",
+    "project_id": "palletcam21",
+    "storage_bucket": "palletcam21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291502064119:android:d98655cf3a84d4815d2ef2",
+        "android_client_info": {
+          "package_name": "com.palletcam.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARyTJNC9FK1ftvEMPoznrdz1E02e_WcbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
