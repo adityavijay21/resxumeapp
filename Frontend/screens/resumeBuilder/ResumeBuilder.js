@@ -3,14 +3,15 @@ import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, Alert 
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import { printToFileAsync } from 'expo-print';
+import { Ionicons } from '@expo/vector-icons';
 
 const ResumeBuilder = () => {
   const [resumeData, setResumeData] = useState({
     personalInfo: { name: '', email: '', phone: '', location: '' },
     summary: '',
-    experience: [{ title: '', company: '', dates: '', responsibilities: '' }],
+    experience: [{ title: '', company: '', startDate: '', endDate: '', responsibilities: '' }],
     education: [{ degree: '', school: '', graduationDate: '' }],
-    skills: '',
+    skills: [],
   });
 
   const updateField = (section, field, value, index = 0) => {
@@ -31,7 +32,7 @@ const ResumeBuilder = () => {
     setResumeData(prevData => ({
       ...prevData,
       [section]: [...prevData[section], section === 'experience' 
-        ? { title: '', company: '', dates: '', responsibilities: '' }
+        ? { title: '', company: '', startDate: '', endDate: '', responsibilities: '' }
         : { degree: '', school: '', graduationDate: '' }
       ]
     }));
@@ -44,14 +45,14 @@ const ResumeBuilder = () => {
     }));
   };
 
-  const renderInputField = (label, value, onChangeText) => (
+  const renderInputField = (label, value, onChangeText, placeholder = '') => (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
       <TextInput
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
-        placeholder={label}
+        placeholder={placeholder || label}
       />
     </View>
   );
@@ -60,20 +61,22 @@ const ResumeBuilder = () => {
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
       {fields.map((item, index) => (
-        <View key={index}>
+        <View key={index} style={styles.sectionItem}>
           {Object.entries(item).map(([key, value]) => 
             renderInputField(
               key.charAt(0).toUpperCase() + key.slice(1),
               value,
-              (text) => updateField(section, key, text, index)
+              (text) => updateField(section, key, text, index),
+              `Enter ${key}`
             )
           )}
           <TouchableOpacity style={styles.removeButton} onPress={() => removeSection(section, index)}>
-            <Text style={styles.removeButtonText}>Remove</Text>
+            <Ionicons name="remove-circle-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>
       ))}
       <TouchableOpacity style={styles.addButton} onPress={() => addSection(section)}>
+        <Ionicons name="add-circle-outline" size={24} color="black" />
         <Text style={styles.addButtonText}>Add {title}</Text>
       </TouchableOpacity>
     </View>
@@ -81,82 +84,47 @@ const ResumeBuilder = () => {
 
   const generateResumePDF = async () => {
     const htmlContent = `
-      <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Resume</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-    h1, h2, h3 {
-      color: #0056b3;
-    }
-    h1 {
-      font-size: 24px;
-    }
-    h2 {
-      font-size: 20px;
-      margin-top: 30px;
-    }
-    h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-    p {
-      margin: 5px 0;
-    }
-    .personal-info, .summary, .experience, .education, .skills {
-      margin-bottom: 20px;
-    }
-    .experience-item, .education-item {
-      margin-bottom: 15px;
-    }
-  </style>
-</head>
-<body>
-  <h1>${resumeData.personalInfo.name}</h1>
-  <p class="personal-info">${resumeData.personalInfo.email} | ${resumeData.personalInfo.phone} | ${resumeData.personalInfo.location}</p>
-  
-  <div class="summary">
-    <h2>Professional Summary</h2>
-    <p>${resumeData.summary}</p>
-  </div>
-  
-  <div class="experience">
-    <h2>Work Experience</h2>
-    ${resumeData.experience.map(exp => `
-      <div class="experience-item">
-        <h3>${exp.title} at ${exp.company}</h3>
-        <p>${exp.dates}</p>
-        <p>${exp.responsibilities}</p>
-      </div>
-    `).join('')}
-  </div>
-  
-  <div class="education">
-    <h2>Education</h2>
-    ${resumeData.education.map(edu => `
-      <div class="education-item">
-        <h3>${edu.degree} from ${edu.school}</h3>
-        <p>Graduated: ${edu.graduationDate}</p>
-      </div>
-    `).join('')}
-  </div>
-  
-  <div class="skills">
-    <h2>Skills</h2>
-    <p>${resumeData.skills}</p>
-  </div>
-</body>
-</html>
-
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            h1 { color: #333; }
+            .section { margin-bottom: 20px; }
+            .section-title { color: #666; }
+          </style>
+        </head>
+        <body>
+          <h1>${resumeData.personalInfo.name}</h1>
+          <p>${resumeData.personalInfo.email} | ${resumeData.personalInfo.phone} | ${resumeData.personalInfo.location}</p>
+          
+          <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p>${resumeData.summary}</p>
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">Experience</h2>
+            ${resumeData.experience.map(exp => `
+              <h3>${exp.title} at ${exp.company}</h3>
+              <p>${exp.startDate} - ${exp.endDate}</p>
+              <p>${exp.responsibilities}</p>
+            `).join('')}
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">Education</h2>
+            ${resumeData.education.map(edu => `
+              <h3>${edu.degree} - ${edu.school}</h3>
+              <p>Graduated: ${edu.graduationDate}</p>
+            `).join('')}
+          </div>
+          
+          <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <p>${resumeData.skills.join(', ')}</p>
+          </div>
+        </body>
+      </html>
     `;
 
     try {
@@ -185,7 +153,7 @@ const ResumeBuilder = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={[styles.title, { marginTop: 60 }]}>ATS-Friendly Resume Builder</Text>
+      <Text style={styles.title}>Resume Builder</Text>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Personal Information</Text>
@@ -193,7 +161,8 @@ const ResumeBuilder = () => {
           renderInputField(
             key.charAt(0).toUpperCase() + key.slice(1),
             value,
-            (text) => updateField('personalInfo', key, text)
+            (text) => updateField('personalInfo', key, text),
+            `Enter your ${key}`
           )
         )}
       </View>
@@ -206,7 +175,7 @@ const ResumeBuilder = () => {
           numberOfLines={4}
           value={resumeData.summary}
           onChangeText={(text) => updateField('summary', null, text)}
-          placeholder="Brief professional summary"
+          placeholder="Write a brief professional summary"
         />
       </View>
 
@@ -216,17 +185,16 @@ const ResumeBuilder = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Skills</Text>
         <TextInput
-          style={[styles.input, styles.multilineInput]}
-          multiline
-          numberOfLines={4}
-          value={resumeData.skills}
-          onChangeText={(text) => updateField('skills', null, text)}
-          placeholder="List your key skills, separated by commas"
+          style={styles.input}
+          value={resumeData.skills.join(', ')}
+          onChangeText={(text) => setResumeData(prev => ({ ...prev, skills: text.split(',').map(skill => skill.trim()) }))}
+          placeholder="Enter skills, separated by commas"
         />
       </View>
 
-      <TouchableOpacity style={[styles.generateButton, { backgroundColor: 'black' }]} onPress={generateResumePDF}>
-        <Text style={styles.generateButtonText}>Generate and Save PDF Resume</Text>
+      <TouchableOpacity style={styles.generateButton} onPress={generateResumePDF}>
+        <Ionicons name="document-text-outline" size={24} color="white" />
+        <Text style={styles.generateButtonText}>Generate PDF Resume</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -236,72 +204,78 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#ffffff',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginTop: 20,
     marginBottom: 20,
     textAlign: 'center',
+    color: '#000000',
   },
   section: {
     marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+    paddingBottom: 15,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#000000',
+  },
+  sectionItem: {
+    marginBottom: 15,
   },
   inputContainer: {
     marginBottom: 10,
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 5,
+    color: '#000000',
   },
   input: {
-    backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#e0e0e0',
     borderRadius: 5,
     padding: 10,
+    fontSize: 14,
   },
   multilineInput: {
     height: 100,
     textAlignVertical: 'top',
   },
   addButton: {
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5,
+    flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
   },
   addButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: '#000000',
+    marginLeft: 5,
   },
   removeButton: {
-    backgroundColor: '#e9ecef',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  removeButtonText: {
-    color: 'black',
-    fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    padding: 5,
   },
   generateButton: {
+    backgroundColor: '#000000',
     padding: 15,
     borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
+    marginBottom: 40,
   },
   generateButtonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 16,
+    marginLeft: 10,
   },
 });
 

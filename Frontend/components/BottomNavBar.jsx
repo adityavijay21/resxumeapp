@@ -1,58 +1,35 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ResumeBuilder from '../screens/resumeBuilder/ResumeBuilder';
-import ResxumeWritersScreen from '../screens/ResxumeWriters/ResxumeWritersScreen';
 import OpportunitiesScreen from '../screens/Opportunities/OpportunitiesScreen';
 import ProfileScreen from '../screens/profilescreens/Profile';
-import ResxumeTemplateGrid from '../screens/ResxumeTemplateGrid';
 import Index from '../screens/Index';
 
 const NAVIGATION_ROUTES = [
-  {
-    key: 'home',
-    title: 'Home',
-    focusedIcon: 'home',
-    unfocusedIcon: 'home-outline',
-  },
-  {
-    key: 'builder',
-    title: 'Builder',
-    focusedIcon: 'document-text',
-    unfocusedIcon: 'document-text-outline',
-  },
-  {
-    key: 'opportunities',
-    title: 'Opportunities',
-    focusedIcon: 'podium',
-    unfocusedIcon: 'podium-outline',
-  },
-  {
-    key: 'profile',
-    title: 'Profile',
-    focusedIcon: 'person',
-    unfocusedIcon: 'person-outline',
-  },
+  { key: 'home', title: 'Home', icon: 'home-outline' },
+  { key: 'builder', title: 'Builder', icon: 'document-text-outline' },
+  { key: 'opportunities', title: 'Jobs', icon: 'briefcase-outline' },
+  { key: 'profile', title: 'Profile', icon: 'person-outline' },
 ];
 
 const BottomNavBar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const insets = useSafeAreaInsets();
 
   const renderScreen = () => {
     switch (NAVIGATION_ROUTES[activeIndex].key) {
-      case 'home':
-        return (
-          <Index />
-        );
-      case 'builder':
-        return <ResumeBuilder />;
-      case 'opportunities':
-        return <OpportunitiesScreen />;
-      case 'profile':
-        return <ProfileScreen />;
-      default:
-        return null;
+      case 'home': return <Index />;
+      case 'builder': return <ResumeBuilder />;
+      case 'opportunities': return <OpportunitiesScreen />;
+      case 'profile': return <ProfileScreen />;
+      default: return null;
     }
+  };
+
+  const handlePress = (index) => {
+    setActiveIndex(index);
   };
 
   return (
@@ -60,21 +37,21 @@ const BottomNavBar = () => {
       <View style={styles.content}>
         {renderScreen()}
       </View>
-      <View style={styles.bottomNav}>
+      <View style={[styles.bottomNav, { paddingBottom: insets.bottom }]}>
         {NAVIGATION_ROUTES.map((route, index) => (
           <TouchableOpacity
             key={route.key}
             style={styles.navItem}
-            onPress={() => setActiveIndex(index)}
+            onPress={() => handlePress(index)}
           >
             <Ionicons
-              name={index === activeIndex ? route.focusedIcon : route.unfocusedIcon}
+              name={route.icon}
               size={24}
-              color={index === activeIndex ? '#000' : '#666'}
+              color={index === activeIndex ? '#000000' : '#808080'}
             />
             <Text style={[
               styles.navText,
-              { color: index === activeIndex ? '#000' : '#666' }
+              { color: index === activeIndex ? '#000000' : '#808080' }
             ]}>
               {route.title}
             </Text>
@@ -88,14 +65,14 @@ const BottomNavBar = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   content: {
     flex: 1,
   },
   bottomNav: {
     flexDirection: 'row',
-    backgroundColor: '#F8F9FA',
-    height: 60,
+    backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#E0E0E0',
   },
@@ -103,6 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 10,
   },
   navText: {
     fontSize: 12,

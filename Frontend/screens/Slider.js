@@ -54,7 +54,7 @@ const Slider = () => {
   useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        x: currentIndex * screenWidth * 0.8,
+        x: currentIndex * screenWidth,
         animated: true,
       });
     }
@@ -99,7 +99,7 @@ const Slider = () => {
             showsHorizontalScrollIndicator={false}
             onMomentumScrollEnd={(event) => {
               const newIndex = Math.round(
-                event.nativeEvent.contentOffset.x / (screenWidth * 0.8)
+                event.nativeEvent.contentOffset.x / screenWidth
               );
               setCurrentIndex(newIndex);
             }}
@@ -158,12 +158,12 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   slide: {
-    width: screenWidth * 0.8,
-    marginRight: screenWidth * 0.05,
-    marginLeft: screenWidth * 0.05,
+    width: screenWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: '100%',
+    width: '80%',
     height: 200,
     borderRadius: 7,
   },

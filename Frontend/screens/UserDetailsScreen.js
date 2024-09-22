@@ -4,8 +4,7 @@ import { TextInput, Button, Text, SegmentedButtons, Provider as PaperProvider } 
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { initializeApp } from 'firebase/app';
-import { updateDoc } from 'firebase/firestore';
-import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { updateDoc , getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
 import BottomNavBar from '../components/BottomNavBar';
 
 

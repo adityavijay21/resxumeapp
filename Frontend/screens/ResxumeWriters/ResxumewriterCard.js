@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Linking, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const ResxumeWriterCard = ({ resxumewriter }) => {
@@ -7,10 +7,10 @@ const ResxumeWriterCard = ({ resxumewriter }) => {
 
   const hireResxumeWriter = () => {
     if (resxumewriter.whatsapp) {
-      const whatsappURL = `https://api.whatsapp.com/send?phone=91${resxumewriter.whatsapp}&text=Hello, I got your number from the official resxume app. I am seeking for a resume writing and came across your profile ${resxumewriter.name} sir, are you interested to work together?`;
+      const whatsappURL = `https://api.whatsapp.com/send?phone=91${resxumewriter.whatsapp}&text=Hello, I got your number from the official resxume app. I am seeking for a resume writing and came across your profile ${resxumewriter.name}. Are you interested to work together?`;
       Linking.openURL(whatsappURL);
     } else {
-      alert("WhatsApp number not available");
+      Alert.alert("WhatsApp number not available");
     }
   };
 
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     fontWeight: 'normal',
   },
+  reviews: {
+    fontSize: 12,
+    color: '#666',
+  },
   details: {
     flex: 1,
   },
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonText: {
-    color: 'white',
+    color: '#FFF',
     fontWeight: 'bold',
     textAlign: 'center',
   },

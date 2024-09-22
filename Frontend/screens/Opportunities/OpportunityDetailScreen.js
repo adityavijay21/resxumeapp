@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const OpportunityDetailScreen = ({ route }) => {
   const { opportunity } = route.params;
@@ -9,60 +10,74 @@ const OpportunityDetailScreen = ({ route }) => {
       <Image source={{ uri: opportunity.logoUrl }} style={styles.logo} />
       <Text style={styles.companyName}>{opportunity.companyName}</Text>
       <Text style={styles.position}>{opportunity.position}</Text>
-      <Text style={styles.location}>{opportunity.location}</Text>
-      <Text style={styles.salary}>{opportunity.salary}</Text>
-      <Text style={styles.postedDate}>Posted: {opportunity.postedDate}</Text>
+      <View style={styles.detailsContainer}>
+        <DetailItem icon="location-on" text={opportunity.location} />
+        <DetailItem icon="attach-money" text={opportunity.salary} />
+        <DetailItem icon="access-time" text={`Posted: ${opportunity.postedDate}`} />
+      </View>
+      <Text style={styles.sectionTitle}>Job Description</Text>
       <Text style={styles.description}>{opportunity.description}</Text>
     </ScrollView>
   );
 };
 
+const DetailItem = ({ icon, text }) => (
+  <View style={styles.detailItem}>
+    <MaterialIcons name={icon} size={18} color="#000" />
+    <Text style={styles.detailText}>{text}</Text>
+  </View>
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#FFEFEF',
+    backgroundColor: '#FFFFFF',
   },
   logo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     alignSelf: 'center',
     marginBottom: 20,
   },
   companyName: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 8,
+    color: '#000000',
   },
   position: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '500',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 16,
+    color: '#000000',
   },
-  location: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    marginBottom: 5,
+  detailsContainer: {
+    marginBottom: 24,
   },
-  salary: {
-    fontSize: 16,
-    color: '#4CAF50',
-    textAlign: 'center',
-    marginBottom: 5,
+  detailItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
   },
-  postedDate: {
+  detailText: {
     fontSize: 14,
-    color: '#999',
-    textAlign: 'center',
-    marginBottom: 20,
+    marginLeft: 8,
+    color: '#000000',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    color: '#000000',
   },
   description: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: 14,
+    lineHeight: 22,
+    color: '#000000',
   },
 });
 

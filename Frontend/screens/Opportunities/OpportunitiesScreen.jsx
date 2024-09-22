@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet, TextInput, Text} from 'react-native';
+import { View, FlatList, StyleSheet, TextInput, Text, ActivityIndicator } from 'react-native';
 import OpportunityCard from './OpportunityCard';
 // const API_URL = 'http://10.0.2.2:3000/';
 const API_URL = 'https://resxumeapp.onrender.com';
@@ -40,17 +40,24 @@ const OpportunitiesScreen = () => {
       <Text style={styles.heading}>Opportunities</Text>
       <TextInput
         style={styles.searchBar}
-        placeholder="Search Opportunities..."
+        placeholder="Search opportunities..."
+        placeholderTextColor="#888"
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
-      <FlatList
-        data={filteredOpportunities}
-        renderItem={({ item }) => <OpportunityCard opportunity={item} />}
-        keyExtractor={item => item.id.toString()}
-        refreshing={loading}
-        onRefresh={fetchOpportunities}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#000" style={styles.loader} />
+      ) : (
+        <FlatList
+          data={filteredOpportunities}
+          renderItem={({ item }) => <OpportunityCard opportunity={item} />}
+          keyExtractor={item => item.id.toString()}
+          refreshing={loading}
+          onRefresh={fetchOpportunities}
+          contentContainerStyle={styles.listContainer}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };
@@ -58,25 +65,33 @@ const OpportunitiesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    padding: 10,
-    marginLeft: 10,
+    backgroundColor: '#fff',
+    padding: 16,
   },
   heading: {
-    alignSelf: 'flex-start',
     fontWeight: 'bold',
-    fontSize: 32,
-    marginTop: 60,
+    fontSize: 28,
+    marginTop: 40,
     marginBottom: 20,
-    color: '#333',
+    color: '#000',
   },
   searchBar: {
     height: 40,
-    borderColor: '#ADB5BD',
+    borderColor: '#000',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
-    marginBottom: 10,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    marginBottom: 16,
+    fontSize: 16,
+    color: '#000',
+  },
+  listContainer: {
+    paddingBottom: 20,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
